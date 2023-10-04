@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FormEvent, useState } from "react"
 import { useTodos } from "../store/todos";
+import showAlertWithTimeout from "../service/alert";
 
 const AddToDo = () =>{
     const[todo,setTodo] = useState("");
@@ -10,6 +11,7 @@ const AddToDo = () =>{
         e.preventDefault();
         handleAddToDo(todo)
         setTodo("")
+        showAlertWithTimeout()
     }
 
     return (
