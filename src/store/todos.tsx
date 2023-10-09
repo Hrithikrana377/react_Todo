@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, ReactNode, useContext, useState } from "react";
+import { showAlertWithTimeout } from "../service/alert";
 
 export type TodosProviderProps = {
     children : ReactNode
@@ -19,7 +20,7 @@ export type TodosContext = {
     todos:Todo[];
     handleAddToDo:(task:string) => void; //call signature
     checkForcomplete:(id:string) => void;
-    handleDeleteTodo:(id:string) => void;
+    handleDeleteTodo:(id:string, value:unknown) => void;
 }
 
 export const todoContext = createContext<TodosContext | null>(null);
@@ -65,7 +66,8 @@ export const TodosProvider = ({children}:TodosProviderProps) => {
     }
 
     //delete individual data
-    const handleDeleteTodo = (id:string) => {
+    const handleDeleteTodo = (id:string,value:unknown) => {
+        showAlertWithTimeout(value);
         setTodos((prev) => {
             let newTodos = prev.filter((filterTodo) => filterTodo.id !== id);
             localStorage.setItem("todos",JSON.stringify(newTodos));

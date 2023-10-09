@@ -20,6 +20,7 @@ const Todos = () => {
         filterData = filterData.filter((task) => task.completed)
     }
 
+    const buttonText = document.getElementById('deleteButton')?.textContent;
 
     return (
         <ul className="main-task">
@@ -32,7 +33,7 @@ const Todos = () => {
                         <label htmlFor={`todo-${todo.id}`}>{todo.task}</label>
                         {
                             todo.completed && (
-                                <button type="button" onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+                                <button type="button" id="deleteButton" onClick={() => handleDeleteTodo(todo.id,buttonText)}>Delete</button>
                             )
                         }
                     </li>
